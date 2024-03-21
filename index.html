@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://kit.fontawesome.com/1dbc5184ba.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./style.css">
+  <title>To-Do App</title>
+  <script src="https://kit.fontawesome.com/1dbc5184ba.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div class="main">
+    <div class="todo">
+      <h1>to-do list</h1>
+    </div>
+    <nav>
+      <ul class="navOptions">
+
+        <li class="navItem">All
+          <hr class="" id="hrAll">
+        </li>
+        <li class="navItem">Activate
+          <hr class="hidden" id="hrActivate">
+        </li>
+        <li class="navItem">Completed
+          <hr class="hidden" id="hrCompleted">
+        </li>
+      </ul>
+    </nav>
+    <div class="details">
+      <div class="">
+        <input type="text" id="input-box1" placeholder="Add Task">
+      </div>
+      <div class="button">
+        <button id="click" onclick="addTask()" type="submit">Add task</button>
+      </div>
+    </div>
+
+    <div class="listElements">
+
+    <ul class="list">
+      <li class="list_item">
+        <input type="checkbox" id="task1">
+        <label for="task1">Tarea 1 </label>
+        <i class="fa-solid fa-trash"></i>
+      </li>
+      <li class="list_item">
+        <input type="checkbox" id="task1">
+        <label for="task1" class="Completed">Tarea 1 </label>
+        <i class="fa-solid fa-trash"></i>
+      </li>
+      <li class="list_item">
+        <input type="checkbox" id="task1">
+        <label for="task1">Tarea 1 </label>
+        <i class="fa-solid fa-trash"></i>
+      </li>
+      <li class="list_item">
+        <input type="checkbox" id="task1">
+        <label for="task1">Tarea 1 </label>
+        <i class="fa-solid fa-trash"></i>
+      </li>
+    </ul>
+  </div>
+
+  </div>
+
+  <!-- Link to Script -->
+  <script src="./main.js" defer></script>
+</body>
+
+</html>

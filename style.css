@@ -1,0 +1,131 @@
+@import url(https://fonts.google.com/specimen/Poppins);
+
+body {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background: -webkit-linear-gradient(to right, #4b134f, #c94b4b);
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #4b134f, #c94b4b);
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+/*  */
+.main {
+    width: 100%;
+    max-width: 400px;
+    margin: 100px auto 20px;
+    padding: 20px 20px 60px;
+    background: #fff;
+    border-radius: 20px;
+    text-align: center
+}
+
+
+.todo {
+
+    text-align: center
+}
+
+
+.navOptions {
+    list-style: none;
+    display: flex;
+    width: 320px;
+    justify-content: space-between;
+    border-bottom: solid rgb(0, 0, 0) 1px;
+
+}
+
+
+.navItem {
+    width: 80px;
+    cursor: pointer;
+}
+
+.navItem hr {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 8%;
+    background-color: blue;
+    border: solid 1px blue;
+}
+
+.details {
+
+    display: flex;
+    justify-content: space-between;
+}
+
+#input-box1 {
+    border-radius: 10px;
+    border: 1px solid #774444;
+    font-size: 15px;
+    padding: 10px;
+    width: 300px;
+
+}
+
+button {
+    border-radius: 10px;
+    padding: 10px 15px;
+    background-color: rgb(0, 128, 248);
+    color: white;
+    cursor: pointer;
+    font-size: 10px;
+}
+
+button:hover {
+    background-color: red;
+}
+
+
+/* ul#list-container {
+    font-size: 10px;
+    cursor: pointer;
+    list-style: none;
+    font-size: 20px;
+    text-align: left;
+    height: 150px;
+    overflow-y: hidden;
+    text-decoration: line-through;} */
+
+
+
+
+.hidden {
+    display: none;
+}
+
+.list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    gap: 1rem;
+
+}
+
+.list_item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+
+
+}
+
+.list_item label {
+    flex-grow: 1;
+}
+
+.list_item i{
+    cursor: pointer;
+}
+.Completed{
+    text-decoration: line-through;
+}
