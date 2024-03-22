@@ -1,19 +1,5 @@
 
 
-/* Los siguientes nombres de funciones son una sugerencia de funciones que necesitarás en tu programa,
-sin embargo, no te limites solo a estas funciones. Crea tantas como consideres necesarias.
-
-La estructura de cada objeto "tarea" es la siguiente:
-
-{
-  id: 1,
-  title: "tarea",
-  completed: false
-}
-
-*/
-
-
 const options = [...document.querySelectorAll(".navItem")]
 const hrAll = document.querySelector("#hrAll")
 const hrActivate = document.querySelector("#hrActivate")
@@ -26,6 +12,13 @@ options[0].addEventListener("click", function () {
     hrAll.classList.remove("hidden")
     hrActivate.classList.add("hidden")
     hrCompleted.classList.add("hidden")
+    list.innerHTML = " "
+    taskList.forEach(task => {
+
+        createTaskElement(task, false)
+
+
+    })
 
 })
 
@@ -34,12 +27,28 @@ options[1].addEventListener("click", function () {
     hrAll.classList.add("hidden")
     hrActivate.classList.remove("hidden")
     hrCompleted.classList.add("hidden")
+    list.innerHTML = " ";
+    taskList.forEach(task => {
+       
+        if  (task.iscompleted === false) {
+            createTaskElement(task, false);
+            console.log(task.iscompleted)
+        }
+    });
+
+    
 
 })
 options[2].addEventListener("click", function () {
     hrAll.classList.add("hidden")
     hrActivate.classList.add("hidden")
     hrCompleted.classList.remove("hidden")
+    list.innerHTML = " ";
+    taskList.forEach(task => {
+        if (task.iscompleted) {
+            createTaskElement(task, true);
+        }
+    });
 
 })
 
@@ -58,8 +67,8 @@ const taskList = [
 
 ];
 
-const all = document.querySelector("#All");
-const Completed = document.querySelector("#Completed")
+// const all = document.querySelector("#All");
+// const Completed = document.querySelector("#Completed")
 
 function createTaskElement({ id, task, iscompleted }, hrCompleted) {
     const li = document.createElement("li");
@@ -89,8 +98,6 @@ function createTaskElement({ id, task, iscompleted }, hrCompleted) {
 
 }
 
-
-
 taskList.forEach(task => {
 
     createTaskElement(task)
@@ -99,23 +106,12 @@ taskList.forEach(task => {
 })
 
 all.addEventListener("click", function () {
-    list.innerHTML = " "
-    taskList.forEach(task => {
-
-        createTaskElement(task, false)
-
-
-    })
+   
 
 
 })
 Completed.addEventListener("click", function () {
-    list.innerHTML = " ";
-    taskList.forEach(task => {
-        if (task.iscompleted) {
-            createTaskElement(task, true);
-        }
-    });
+   
 });
 
 trashIcon.addEventListener("click", function () {
