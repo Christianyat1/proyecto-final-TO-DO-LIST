@@ -1,160 +1,113 @@
+const options = [...document.querySelectorAll(".navItem")];
+const hrAll = document.querySelector("#hrAll");
+const hrActivate = document.querySelector("#hrActivate");
+const hrCompleted = document.querySelector("#hrCompleted");
+const list = document.querySelector("#list");
+const newTaskInput = document.querySelector("#newTask");
 
+const taskList = JSON.parse(localStorage.getItem("taskList")) || [];
 
-const options = [...document.querySelectorAll(".navItem")]
-const hrAll = document.querySelector("#hrAll")
-const hrActivate = document.querySelector("#hrActivate")
-const hrCompleted = document.querySelector("#hrCompleted")
+function saveTaskListToLocalStorage() {
+    localStorage.setItem("taskList", JSON.stringify(taskList));
+}
 
-
-
-options[0].addEventListener("click", function () {
-
-    hrAll.classList.remove("hidden")
-    hrActivate.classList.add("hidden")
-    hrCompleted.classList.add("hidden")
-    list.innerHTML = " "
+function updateTaskList() {
+    list.innerHTML = "";
     taskList.forEach(task => {
-
-        createTaskElement(task, false)
-
-
-    })
-
-})
-
-options[1].addEventListener("click", function () {
-
-    hrAll.classList.add("hidden")
-    hrActivate.classList.remove("hidden")
-    hrCompleted.classList.add("hidden")
-    list.innerHTML = " ";
-    taskList.forEach(task => {
-
-        if (task.iscompleted === false) {
-            createTaskElement(task, false);
-
+        if (
+            (options[0].classList.contains("active") || options[0].classList.contains("hidden")) ||
+            (options[1].classList.contains("active") && !task.iscompleted) ||
+            (options[2].classList.contains("active") && task.iscompleted)
+        ) {
+            createTaskElement(task);
         }
     });
+}
 
-
-
-})
-options[2].addEventListener("click", function () {
-    hrAll.classList.add("hidden")
-    hrActivate.classList.add("hidden")
-    hrCompleted.classList.remove("hidden")
-    list.innerHTML = " ";
-    taskList.forEach(task => {
-        if (task.iscompleted) {
-            createTaskElement(task, true);
-        }
-    });
-
-})
-
-
-
-const list = document.querySelector("#list")
-const newTask = document.querySelector("#newTask")
-const buttonNewTask = document.querySelector("#buttonNewTask")
-
-const taskList = [
-    { id: 1, task: "limpiar", iscompleted: true },
-    { id: 2, task: "cocinar", iscompleted: false },
-    { id: 3, task: "comer", iscompleted: true },
-    { id: 4, task: "correr", iscompleted: false },
-    { id: 5, task: "saludar", iscompleted: true },
-    { id: 6, task: "enseñar", iscompleted: true },
-    { id: 7, task: "leer", iscompleted: false },
-
-];
-
-// const all = document.querySelector("#All");
-// const Completed = document.querySelector("#Completed")
-
-function createTaskElement({id, task, iscompleted}) {
+function createTaskElement({ id, task, iscompleted }) {
     const li = document.createElement("li");
+    li.classList.add("list_item");
+
     const input = document.createElement("input");
+    input.type = "checkbox";
+    input.id = id;
+    input.checked = iscompleted;
+    input.addEventListener("change", () => {
+        const index = taskList.findIndex(item => id === item.id);
+        taskList[index].iscompleted = !taskList[index].iscompleted;
+        saveTaskListToLocalStorage();
+        updateTaskList();
+    });
+
     const label = document.createElement("label");
+    label.htmlFor = id;
+    label.textContent = task;
 
-
-    li.classList.add("list_item")
-    input.type = "checkbox"
-    input.id = id
-    input.checked = iscompleted
-    input.addEventListener("change", ()=>{
-        const index = taskList.findIndex(item => id === task.id)
-        taskList[index].iscompleted = !taskList[index].iscompleted
-        
-    })
-    label.htmlFor = id
-    label.textContent = task
-
-
-
-    li.append(input, label)
+    li.append(input, label);
 
     if (iscompleted) {
-
         label.classList.add("iscompleted");
         const icon = document.createElement("i");
-        icon.classList.add("fa-solid", "fa-trash")
-        li.appendChild(icon)
+        icon.classList.add("fa-solid", "fa-trash");
+        icon.addEventListener("click", () => {
+            removeTask(id);
+        });
+        li.appendChild(icon);
     }
-    list.appendChild(li)
 
+    list.appendChild(li);
 }
 
-taskList.forEach(task => {
+function removeTask(id) {
+    const index = taskList.findIndex(task => task.id === id);
+    taskList.splice(index, 1);
+    saveTaskListToLocalStorage();
+    updateTaskList();
+}
 
-    createTaskElement(task)
-})
+options.forEach(option => {
+    option.addEventListener("click", () => {
+        options.forEach(opt => opt.classList.remove("active"));
+        option.classList.add("active");
+        if (option.id === "all") {
+            hrAll.classList.remove("hidden");
+            hrActivate.classList.add("hidden");
+            hrCompleted.classList.add("hidden");
+        } else if (option.id === "activate") {
+            hrAll.classList.add("hidden");
+            hrActivate.classList.remove("hidden");
+            hrCompleted.classList.add("hidden");
+        } else if (option.id === "completed") {
+            hrAll.classList.add("hidden");
+            hrActivate.classList.add("hidden");
+            hrCompleted.classList.remove("hidden");
+        }
+        updateTaskList();
+    });
+});
 
-
-
-// /* funcion para agregar un elemento */
-const myArray = []
-
+newTaskInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+        addTask();
+    }
+});
 
 function addTask() {
-
-    const li = document.createElement("li");
-    li.classList.add("list_item")
-
-
-    const icon = document.createElement("i");
-    const input = document.getElementById("newTask").value;
-    const label = document.createElement("label");
-
-    label.innerText = input
-    const checkbox = document.createElement("input")
-
-    checkbox.type = "checkbox"
-    icon.classList.add("fa-solid", "fa-trash")
-    li.appendChild(checkbox)
-    li.appendChild(label)
-    li.appendChild(icon)
-    icon.addEventListener("click", anytask)
-
-
-
-
-
-
-    document.getElementById("list").appendChild(li)
-
-    myObject = { id: 1, task: input, iscompleted: false }
-
-    myArray.push(myObject)
-    console.log(myArray)
-
-
-
-
-}
-function anytask() {
-
+    const taskText = newTaskInput.value.trim();
+    if (taskText !== "") {
+        const newTask = {
+            id: Date.now(),
+            task: taskText,
+            iscompleted: false
+        };
+        taskList.push(newTask);
+        saveTaskListToLocalStorage();
+        updateTaskList();
+        newTaskInput.value = "";
+    } else {
+        alert("Please enter a task!");
+    }
 }
 
 
-
+updateTaskList();
