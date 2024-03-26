@@ -62,7 +62,7 @@ body {
     justify-content: space-between;
 }
 
-#input-box1 {
+#newTask {
     border-radius: 10px;
     border: 1px solid #774444;
     font-size: 15px;
@@ -114,6 +114,6 @@ button:hover {
 .list_item i{
     cursor: pointer;
 }
-.completed{
+.iscompleted{
     text-decoration: line-through;
 } 

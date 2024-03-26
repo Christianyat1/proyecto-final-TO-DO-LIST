@@ -29,14 +29,14 @@ options[1].addEventListener("click", function () {
     hrCompleted.classList.add("hidden")
     list.innerHTML = " ";
     taskList.forEach(task => {
-       
-        if  (task.iscompleted === false) {
+
+        if (task.iscompleted === false) {
             createTaskElement(task, false);
-            console.log(task.iscompleted)
+
         }
     });
 
-    
+
 
 })
 options[2].addEventListener("click", function () {
@@ -55,6 +55,8 @@ options[2].addEventListener("click", function () {
 
 
 const list = document.querySelector("#list")
+const newTask = document.querySelector("#newTask")
+const buttonNewTask = document.querySelector("#buttonNewTask")
 
 const taskList = [
     { id: 1, task: "limpiar", iscompleted: true },
@@ -70,7 +72,7 @@ const taskList = [
 // const all = document.querySelector("#All");
 // const Completed = document.querySelector("#Completed")
 
-function createTaskElement({ id, task, iscompleted }, hrCompleted) {
+function createTaskElement({id, task, iscompleted}) {
     const li = document.createElement("li");
     const input = document.createElement("input");
     const label = document.createElement("label");
@@ -80,6 +82,11 @@ function createTaskElement({ id, task, iscompleted }, hrCompleted) {
     input.type = "checkbox"
     input.id = id
     input.checked = iscompleted
+    input.addEventListener("change", ()=>{
+        const index = taskList.findIndex(item => id === task.id)
+        taskList[index].iscompleted = !taskList[index].iscompleted
+        
+    })
     label.htmlFor = id
     label.textContent = task
 
@@ -89,7 +96,7 @@ function createTaskElement({ id, task, iscompleted }, hrCompleted) {
 
     if (iscompleted) {
 
-        label.classList.add("Completed");
+        label.classList.add("iscompleted");
         const icon = document.createElement("i");
         icon.classList.add("fa-solid", "fa-trash")
         li.appendChild(icon)
@@ -101,52 +108,53 @@ function createTaskElement({ id, task, iscompleted }, hrCompleted) {
 taskList.forEach(task => {
 
     createTaskElement(task)
-
-
 })
 
-all.addEventListener("click", function () {
-   
 
 
-})
-Completed.addEventListener("click", function () {
-   
-});
-
-trashIcon.addEventListener("click", function () {
-    taskList = taskList.filter(item => item.id !== task.id);
-    renderTasks();
-});
+// /* funcion para agregar un elemento */
+const myArray = []
 
 
+function addTask() {
+
+    const li = document.createElement("li");
+    li.classList.add("list_item")
 
 
-// Función para marcar una tarea como completada o imcompleta (Puede ser la misma función)
-function completeTask() {
+    const icon = document.createElement("i");
+    const input = document.getElementById("newTask").value;
+    const label = document.createElement("label");
+
+    label.innerText = input
+    const checkbox = document.createElement("input")
+
+    checkbox.type = "checkbox"
+    icon.classList.add("fa-solid", "fa-trash")
+    li.appendChild(checkbox)
+    li.appendChild(label)
+    li.appendChild(icon)
+    icon.addEventListener("click", anytask)
+
+
+
+
+
+
+    document.getElementById("list").appendChild(li)
+
+    myObject = { id: 1, task: input, iscompleted: false }
+
+    myArray.push(myObject)
+    console.log(myArray)
+
 
 
 
 }
-
-// Función para borrar una tarea
-function deleteTask() {
+function anytask() {
 
 }
 
-// Funcion para borrar todas las tareas
-function deleteAll() {
-
-}
-
-// Función para filtrar tareas completadas
-function filterCompleted() {
-
-}
-
-// Función para filtrar tareas incompletas
-function filterUncompleted() {
-
-}
 
 
