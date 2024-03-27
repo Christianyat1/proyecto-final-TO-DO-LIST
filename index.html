@@ -4,27 +4,25 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://kit.fontawesome.com/1dbc5184ba.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" href="./style.css">
   <title>To-Do App</title>
+  <link rel="stylesheet" href="./style.css">
   <script src="https://kit.fontawesome.com/1dbc5184ba.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div class="main">
     <div class="todo">
-      <h1>to-do list</h1>
+      <h1>To-Do List</h1>
     </div>
     <nav>
       <ul class="navOptions" id="navOptions">
-
-        <li class="navItem" id="all">All
+        <li class="navItem active" id="all">All
           <hr class="" id="hrAll">
         </li>
-        <li class="navItem" id="Activate">Activate
+        <li class="navItem" id="activate">Activate
           <hr class="hidden" id="hrActivate">
         </li>
-        <li class="navItem" id="Completed">Completed
+        <li class="navItem" id="completed">Completed
           <hr class="hidden" id="hrCompleted">
         </li>
       </ul>
@@ -34,19 +32,13 @@
         <input type="text" id="newTask" placeholder="Add Task">
       </div>
       <div class="button">
-
-        <button id="click" onclick="addTask()">Add task</button>
+        <button id="addTaskButton">Add Task</button>
       </div>
     </div>
 
     <div class="listElements">
-
-      <ul id="list" class="list">
-        
-      </ul>
-      
-  </div>
-
+      <ul id="list" class="list"></ul>
+    </div>
   </div>
 
   <!-- Link to Script -->
