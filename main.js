@@ -86,10 +86,8 @@ options.forEach(option => {
     });
 });
 
-newTaskInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-        addTask();
-    }
+document.getElementById("addTaskButton").addEventListener("click", function() {
+    addTask();
 });
 
 function addTask() {
