@@ -21,9 +21,11 @@ body {
     max-width: 400px;
     margin: 100px auto 20px;
     padding: 20px 20px 60px;
-    background: #fff;
+    background: #ddf0ff;
+    box-shadow: 0 10px 10px -2px rgba(0,0,0,.25);
     border-radius: 20px;
     text-align: center
+    
 }
 
 
@@ -72,17 +74,18 @@ body {
 }
 
 button {
-    border-radius: 10px;
-    padding: 10px 15px;
-    background-color: rgb(0, 128, 248);
     color: white;
-    cursor: pointer;
-    font-size: 10px;
+                padding: 10px 30px;
+                border-radius: 100px;
+                background: #f857a6;
+                background: -webkit-linear-gradient(to right,#ff5858,#f857a6);
+                background: linear-gradient(to right,#ff5858,#f857a6);
+                box-shadow: 0 10px 10px -2px rgba(0,0,0,.25);
+                cursor:pointer;
+                border: 0 !important;
 }
 
-button:hover {
-    background-color: red;
-}
+
 
 
 
